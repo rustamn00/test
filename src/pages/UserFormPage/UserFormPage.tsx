@@ -13,8 +13,9 @@ import history from "../../helpers/history";
 import ITodoItem from "../../model/ITodoItem";
 import { Box } from "@mui/material";
 import { width } from "@mui/system";
+import IUserItem from "../../model/IUserItem";
 
-interface ITodoOnePageProps {
+interface IUserOnePageProps {
   id: string;
 }
 
@@ -179,8 +180,8 @@ const fields: TypedField[] = [
   },
 ];
 
-export const UserOnePage = ({ id }: ITodoOnePageProps) => {
-  const fetchState = () => [fetchApi<ITodoItem>(`/users/${id}`)] as const;
+export const UserOnePage = ({ id }: IUserOnePageProps) => {
+  const fetchState = () => [fetchApi<IUserItem>(`/users/${id}`)] as const;
 
   const Content = (props: any) => {
     const { data, oneProps, beginSave } = usePreventLeave({
@@ -201,8 +202,8 @@ export const UserOnePage = ({ id }: ITodoOnePageProps) => {
           onBack={() => history.push("/users_list")}
           saveDisabled={!data}
         />
-        <One<ITodoItem>
-          handler={() => props.todo}
+        <One<IUserItem>
+          handler={() => props.user}
           fields={fields}
           {...oneProps}
         />
@@ -212,7 +213,7 @@ export const UserOnePage = ({ id }: ITodoOnePageProps) => {
 
   return (
     <FetchView state={fetchState}>
-      {(todo) => <Content todo={todo} />}
+      {(user) => <Content user={user} />}
     </FetchView>
   );
 };
