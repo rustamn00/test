@@ -1,1 +1,1 @@
-telegram: og_dota
+telegram: @og_dota
